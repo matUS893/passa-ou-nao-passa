@@ -1,446 +1,553 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Passa ou Não Passa?</title>
+<meta charset="UTF-8">
 
-    <style>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-        * {
-            box-sizing: border-box;
-        }
+<title>Passa ou Não Passa?</title>
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #eef2ff;
-            color: #111827;
-        }
+<style>
 
-        header {
-            background: #2563eb;
-            color: white;
-            padding: 25px 20px;
-            text-align: center;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eef2ff;
+    color: #111827;
+}
 
-        header p {
-            margin: 8px 0 0;
-            opacity: 0.9;
-        }
+header {
+    background: #2563eb;
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+}
 
-        .container {
-            max-width: 500px;
-            margin: 25px auto;
-            padding: 0 15px;
-        }
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
 
-        .card {
-            background: white;
-            padding: 22px;
-            border-radius: 18px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
+header p {
+    margin: 8px 0 0;
+}
 
-        label {
-            display: block;
-            margin-top: 16px;
-            margin-bottom: 7px;
-            font-weight: bold;
-        }
+.container {
+    max-width: 550px;
+    margin: 25px auto;
+    padding: 0 15px;
+}
 
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
-            font-size: 16px;
-            outline: none;
-        }
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
 
-        input:focus {
-            border-color: #2563eb;
-        }
+.materia {
+    border: 2px solid #e5e7eb;
+}
 
-        button {
-            width: 100%;
-            border: none;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            background: #2563eb;
-            color: white;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.titulo-materia {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
-        button:hover {
-            opacity: 0.9;
-        }
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
 
-        .limpar {
-            background: #6b7280;
-        }
+input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 16px;
+}
 
-        #resultado {
-            display: none;
-            margin-top: 22px;
-            padding: 20px;
-            border-radius: 14px;
-            text-align: center;
-        }
+button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #2563eb;
+}
 
-        #resultado h2 {
-            margin-top: 0;
-        }
+button:active {
+    transform: scale(0.98);
+}
 
-        .sucesso {
-            background: #dcfce7;
-            color: #166534;
-        }
+.adicionar {
+    background: #16a34a;
+}
 
-        .normal {
-            background: #dbeafe;
-            color: #1e40af;
-        }
+.calcular {
+    background: #2563eb;
+    font-size: 18px;
+}
 
-        .erro {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+.remover {
+    background: #dc2626;
+    font-size: 14px;
+}
 
-        .nota-grande {
-            font-size: 36px;
-            margin: 10px 0;
-            font-weight: bold;
-        }
+.resultado {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    display: none;
+}
 
-        .rodape {
-            text-align: center;
-            color: #6b7280;
-            font-size: 13px;
-            margin: 25px 0;
-        }
+.verde {
+    background: #dcfce7;
+    color: #166534;
+}
 
-    </style>
+.azul {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.vermelho {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.numero {
+    font-size: 32px;
+    margin: 8px;
+}
+
+#resultadoGeral {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 13px;
+    padding: 20px;
+}
+
+</style>
+
 </head>
 
 <body>
 
+
 <header>
 
-    <h1>📚 Passa ou Não Passa?</h1>
+<h1>📚 Passa ou Não Passa?</h1>
 
-    <p>
-        Descubra quanto precisa tirar na próxima prova.
-    </p>
+<p>
+Descubra quanto precisa tirar para passar.
+</p>
 
 </header>
 
 
 <div class="container">
 
-    <div class="card">
 
-        <label>📖 Matéria</label>
-
-        <input
-            type="text"
-            id="materia"
-            placeholder="Ex: Matemática"
-        >
+<div id="materias">
 
 
-        <label>📝 Nota 1</label>
+<div class="card materia">
 
-        <input
-            type="number"
-            id="nota1"
-            min="0"
-            max="10"
-            step="0.1"
-            placeholder="Ex: 5"
-        >
+<div class="titulo-materia">
+📖 Matéria 1
+</div>
 
+<label>Nome da matéria</label>
 
-        <label>📝 Nota 2</label>
-
-        <input
-            type="number"
-            id="nota2"
-            min="0"
-            max="10"
-            step="0.1"
-            placeholder="Ex: 6"
-        >
+<input
+type="text"
+class="nome"
+placeholder="Ex: Matemática">
 
 
-        <label>📝 Nota 3</label>
+<label>Notas que você já tirou</label>
 
-        <input
-            type="number"
-            id="nota3"
-            min="0"
-            max="10"
-            step="0.1"
-            placeholder="Ex: 4"
-        >
+<input
+type="text"
+class="notas"
+placeholder="Ex: 5, 6, 4">
 
 
-        <label>📝 Nota 4 (opcional)</label>
+<label>Média mínima</label>
 
-        <input
-            type="number"
-            id="nota4"
-            min="0"
-            max="10"
-            step="0.1"
-            placeholder="Opcional"
-        >
+<input
+type="number"
+class="media"
+value="6"
+min="0"
+max="10"
+step="0.1">
 
-
-        <label>🎯 Média mínima para passar</label>
-
-        <input
-            type="number"
-            id="mediaMinima"
-            min="0"
-            max="10"
-            step="0.1"
-            value="6"
-        >
-
-
-        <button onclick="calcular()">
-            🧮 CALCULAR
-        </button>
-
-
-        <button
-            class="limpar"
-            onclick="limpar()"
-        >
-            🔄 NOVO CÁLCULO
-        </button>
-
-
-        <div id="resultado"></div>
-
-    </div>
-
-
-    <div class="rodape">
-
-        Passa ou Não Passa? — Calculadora escolar
-
-    </div>
+<div class="resultado"></div>
 
 </div>
 
 
+</div>
+
+
+<button
+class="adicionar"
+onclick="adicionarMateria()">
+
+➕ ADICIONAR MATÉRIA
+
+</button>
+
+
+<button
+class="calcular"
+onclick="calcularTudo()">
+
+🧮 CALCULAR TUDO
+
+</button>
+
+
+<div
+id="resultadoGeral"
+class="card">
+
+<h2>📊 Seu boletim</h2>
+
+<div id="resumo"></div>
+
+</div>
+
+
+</div>
+
+
+<footer>
+
+Passa ou Não Passa? — Calculadora escolar
+
+</footer>
+
+
 <script>
 
-function calcular() {
-
-    let materia =
-        document.getElementById("materia").value.trim();
+let contador = 1;
 
 
-    let notas = [];
+function adicionarMateria() {
 
-    let campos = [
-        "nota1",
-        "nota2",
-        "nota3",
-        "nota4"
-    ];
+    contador++;
+
+    let div = document.createElement("div");
+
+    div.className = "card materia";
+
+    div.innerHTML = `
+
+        <div class="titulo-materia">
+            📖 Matéria ${contador}
+        </div>
+
+        <label>Nome da matéria</label>
+
+        <input
+            type="text"
+            class="nome"
+            placeholder="Ex: Português">
+
+        <label>
+            Notas que você já tirou
+        </label>
+
+        <input
+            type="text"
+            class="notas"
+            placeholder="Ex: 7, 5.5, 8">
+
+        <label>
+            Média mínima
+        </label>
+
+        <input
+            type="number"
+            class="media"
+            value="6"
+            min="0"
+            max="10"
+            step="0.1">
+
+        <div class="resultado"></div>
+
+        <button
+            class="remover"
+            onclick="removerMateria(this)">
+
+            🗑️ REMOVER MATÉRIA
+
+        </button>
+
+    `;
+
+    document
+    .getElementById("materias")
+    .appendChild(div);
+}
 
 
-    for (let id of campos) {
+function removerMateria(botao) {
 
-        let valor =
-            document.getElementById(id).value;
+    botao
+    .parentElement
+    .remove();
 
-        if (valor !== "") {
+}
 
-            let nota = Number(valor);
 
-            if (nota < 0 || nota > 10) {
+function calcularTudo() {
 
-                mostrarErro(
-                    "As notas precisam estar entre 0 e 10."
-                );
+    let materias =
+    document.querySelectorAll(".materia");
+
+    let resumo = "";
+
+    let quantidade = 0;
+
+
+    materias.forEach(function(materia) {
+
+        let nome =
+        materia
+        .querySelector(".nome")
+        .value
+        .trim();
+
+        let textoNotas =
+        materia
+        .querySelector(".notas")
+        .value
+        .trim();
+
+        let media =
+        Number(
+            materia
+            .querySelector(".media")
+            .value
+        );
+
+        let resultado =
+        materia
+        .querySelector(".resultado");
+
+
+        if (textoNotas === "") {
+
+            resultado.className =
+            "resultado vermelho";
+
+            resultado.innerHTML =
+            "Digite pelo menos uma nota.";
+
+            resultado.style.display =
+            "block";
+
+            return;
+        }
+
+
+        let partes =
+        textoNotas.split(",");
+
+
+        let notas = [];
+
+
+        for (let parte of partes) {
+
+            let nota =
+            Number(
+                parte.trim()
+            );
+
+
+            if (
+                isNaN(nota) ||
+                nota < 0 ||
+                nota > 10
+            ) {
+
+                resultado.className =
+                "resultado vermelho";
+
+                resultado.innerHTML =
+                "Confira as notas digitadas.";
+
+                resultado.style.display =
+                "block";
 
                 return;
             }
 
+
             notas.push(nota);
+
         }
-    }
 
 
-    let mediaMinima =
-        Number(
-            document.getElementById("mediaMinima").value
-        );
+        let soma = 0;
 
 
-    if (notas.length === 0) {
+        notas.forEach(function(nota) {
 
-        mostrarErro(
-            "Digite pelo menos uma nota."
-        );
+            soma += nota;
 
-        return;
-    }
+        });
 
 
-    if (
-        mediaMinima < 0 ||
-        mediaMinima > 10
-    ) {
-
-        mostrarErro(
-            "A média mínima precisa estar entre 0 e 10."
-        );
-
-        return;
-    }
+        let mediaAtual =
+        soma / notas.length;
 
 
-    let soma = 0;
-
-
-    for (let nota of notas) {
-
-        soma += nota;
-
-    }
-
-
-    let notaNecessaria =
-        (mediaMinima * (notas.length + 1))
+        let notaNecessaria =
+        (media * (notas.length + 1))
         - soma;
 
 
-    notaNecessaria =
-        Math.round(notaNecessaria * 10) / 10;
+        notaNecessaria =
+        Math.round(
+            notaNecessaria * 10
+        ) / 10;
 
 
-    let nomeMateria =
-        materia || "essa matéria";
+        let nomeExibicao =
+        nome || "Matéria";
 
 
-    if (notaNecessaria <= 0) {
+        if (notaNecessaria <= 0) {
 
-        mostrarResultado(
-            "sucesso",
-            "🎉 Você já passou!",
-            "Você já está acima da média em " +
-            nomeMateria + "."
-        );
+            resultado.className =
+            "resultado verde";
 
-        return;
-    }
+            resultado.innerHTML =
+            "✅ Já está acima da média!";
+
+            resultado.style.display =
+            "block";
 
 
-    if (notaNecessaria > 10) {
+            resumo += `
+                <p>
+                🟢 <strong>
+                ${nomeExibicao}
+                </strong>:
+                já está acima da média.
+                </p>
+            `;
 
-        mostrarResultado(
-            "erro",
-            "😬 Ficou difícil!",
-            "Você precisaria tirar " +
+        }
+
+        else if (notaNecessaria > 10) {
+
+            resultado.className =
+            "resultado vermelho";
+
+            resultado.innerHTML =
+            "❌ Precisaria tirar " +
             notaNecessaria +
-            " na próxima prova. Essa nota é maior que 10."
-        );
+            ".";
 
-        return;
+            resultado.style.display =
+            "block";
+
+
+            resumo += `
+                <p>
+                🔴 <strong>
+                ${nomeExibicao}
+                </strong>:
+                precisaria tirar
+                ${notaNecessaria}.
+                </p>
+            `;
+
+        }
+
+        else {
+
+            resultado.className =
+            "resultado azul";
+
+            resultado.innerHTML =
+
+            "Você precisa tirar:" +
+
+            "<div class='numero'>" +
+            notaNecessaria +
+            "</div>" +
+
+            "na próxima prova.";
+
+            resultado.style.display =
+            "block";
+
+
+            resumo += `
+                <p>
+                🔵 <strong>
+                ${nomeExibicao}
+                </strong>:
+                precisa tirar
+                <strong>
+                ${notaNecessaria}
+                </strong>.
+                </p>
+            `;
+
+        }
+
+
+        quantidade++;
+
+    });
+
+
+    if (quantidade > 0) {
+
+        document
+        .getElementById("resumo")
+        .innerHTML = resumo;
+
+        document
+        .getElementById("resultadoGeral")
+        .style.display = "block";
+
     }
-
-
-    mostrarResultado(
-        "normal",
-        "📚 Você precisa tirar:",
-        "<div class='nota-grande'>" +
-        notaNecessaria +
-        "</div>" +
-        "na próxima prova de " +
-        nomeMateria +
-        " para alcançar média " +
-        mediaMinima +
-        "."
-    );
-
-}
-
-
-function mostrarResultado(
-    classe,
-    titulo,
-    texto
-) {
-
-    let resultado =
-        document.getElementById("resultado");
-
-
-    resultado.className = classe;
-
-
-    resultado.innerHTML =
-        "<h2>" +
-        titulo +
-        "</h2>" +
-        "<p>" +
-        texto +
-        "</p>";
-
-
-    resultado.style.display = "block";
-
-}
-
-
-function mostrarErro(texto) {
-
-    mostrarResultado(
-        "erro",
-        "⚠️ Atenção",
-        texto
-    );
-
-}
-
-
-function limpar() {
-
-    document.getElementById("materia").value = "";
-
-    document.getElementById("nota1").value = "";
-
-    document.getElementById("nota2").value = "";
-
-    document.getElementById("nota3").value = "";
-
-    document.getElementById("nota4").value = "";
-
-    document.getElementById("mediaMinima").value = "6";
-
-
-    document.getElementById("resultado").style.display =
-        "none";
 
 }
 
 </script>
 
 </body>
+
 </html>
